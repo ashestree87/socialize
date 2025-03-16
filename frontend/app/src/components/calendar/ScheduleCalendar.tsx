@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, { useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -48,8 +49,8 @@ interface ScheduledPost {
 }
 
 const ScheduleCalendar: React.FC = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [posts, setPosts] = useState<ScheduledPost[]>([
+  const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [posts, setPosts] = React.useState<ScheduledPost[]>([
     {
       id: '1',
       title: 'Product Launch',
@@ -80,9 +81,9 @@ const ScheduleCalendar: React.FC = () => {
     },
   ]);
 
-  const [selectedPost, setSelectedPost] = useState<ScheduledPost | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isNewPost, setIsNewPost] = useState(false);
+  const [selectedPost, setSelectedPost] = React.useState<ScheduledPost | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [isNewPost, setIsNewPost] = React.useState(false);
 
   const start = startOfWeek(currentDate, { weekStartsOn: 1 });
   const end = endOfWeek(currentDate, { weekStartsOn: 1 });

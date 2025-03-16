@@ -13,7 +13,7 @@ import {
   ListItemIcon,
   ListItemText,
   Menu,
-  MenuItem,
+  MenuItem as MuiMenuItem,
   Toolbar,
   Typography,
   useMediaQuery,
@@ -37,6 +37,7 @@ import {
 } from '@mui/icons-material';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { styled } from '@mui/material/styles';
 
 const drawerWidth = 240;
 
@@ -163,6 +164,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </List>
     </div>
   );
+  
+  const MenuItem = styled(MuiMenuItem)(({ theme }) => ({
+    // ... styling ...
+  }));
   
   return (
     <Box sx={{ display: 'flex' }}>
