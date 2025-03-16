@@ -41,7 +41,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       try {
         const token = localStorage.getItem('auth_token');
         if (token) {
-          const { data } = await api.get<{ data: User }>('/user');
+          const { data } = await api.get<{ data: User }>('/api/user');
           setUser(data.data);
         }
       } catch (error) {
@@ -60,7 +60,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      const { data } = await api.post<AuthResponse>('/login', {
+      const { data } = await api.post<AuthResponse>('/api/login', {
         email,
         password,
       });
@@ -78,7 +78,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async () => {
     try {
-      await api.post('/logout');
+      await api.post('/api/logout');
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
@@ -91,7 +91,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const register = async (name: string, email: string, password: string) => {
     setIsLoading(true);
     try {
-      const { data } = await api.post<AuthResponse>('/register', {
+      const { data } = await api.post<AuthResponse>('/api/register', {
         name,
         email,
         password,

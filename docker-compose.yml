@@ -14,9 +14,16 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-      - REACT_APP_API_URL=http://localhost:8000/api
+      - REACT_APP_API_URL=http://localhost:8000
       - WDS_SOCKET_HOST=localhost
       - WDS_SOCKET_PORT=3000
+      - NODE_OPTIONS=--max_old_space_size=4096
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
     depends_on:
       - backend
     networks:

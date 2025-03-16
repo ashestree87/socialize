@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ContentUploadController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\SocialPlatformController;
 use App\Http\Controllers\Api\TenantController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,14 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+// New test route with a different path
+Route::get('/apitest', function () {
+    return response()->json(['message' => 'API test route is working']);
+});
+
+// Test controller route
+Route::get('/test-controller', [TestController::class, 'test']);
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
@@ -47,4 +56,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('content-uploads', ContentUploadController::class);
     Route::get('/content-uploads/{id}/download', [ContentUploadController::class, 'download']);
     Route::post('/content-uploads/{id}/publish', [ContentUploadController::class, 'publish']);
-}); 
+});
+
+// Test route
+Route::get('/test', function () {
+    return response()->json(['message' => 'API test route is working']);
+});

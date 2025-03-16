@@ -24,6 +24,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Add a test route directly in the boot method
+        Route::get('/api/direct-test', function () {
+            return response()->json(['message' => 'Direct API test route is working']);
+        });
+
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
